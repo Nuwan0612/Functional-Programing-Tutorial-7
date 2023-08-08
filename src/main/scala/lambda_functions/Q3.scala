@@ -2,22 +2,15 @@ package lambda_functions
 
 object Q3 {
 
-  val isPrime: Int => Boolean = n => {
-    if (n <= 1) false
-    else if (n <= 3) true
-    else if (n % 2 == 0 || n % 3 == 0) false
-    else {
-      var i = 5
-      while (i * i <= n) {
-        if (n % i == 0 || n % (i + 2) == 0) false
-        i += 6
-      }
-     true
-    }
+  def prime(n: Int, i: Int = 2): Boolean = i match {
+    case y if y >= n => true
+    case y if n % y == 0 => false
+    case y => prime(n, y + 1)
   }
 
+
   def filterPrime(numbers: List[Int]): List[Int] = {
-    numbers.filter(isPrime)
+    numbers.filter(number => prime(number))
   }
 
   def main(args: Array[String]): Unit = {
